@@ -18,7 +18,7 @@ class WebController extends Controller
     }
     public function searchBox(Request $request)
     {
-        $book1 = Book::where("title", $request->bookname)->get();
+        $book1 = Book::where("title",'like','%'.$request->bookname.'%')->get();
         return view("search", [
             "book1"=>$book1,
         ]);
