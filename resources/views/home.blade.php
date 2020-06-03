@@ -10,6 +10,15 @@
 
 </head>
 <body>
+<form  role="form" action="{{url("/search")}}" method="POST">
+    @method("POST")
+    @csrf
+    <div class="form-group" style="width: 30%">
+        <label for="book">Email address</label>
+        <input type="text" name="bookname" class="form-control" id="book" placeholder="Search....">
+        <button class="btn btn-dark">Search</button>
+    </div>
+</form>
 <table class="table">
     <thead>
     <tr>
@@ -19,8 +28,6 @@
         <th scope="col">PUB_Year</th>
         <th scope="col">Avalible</th>
         <th scope="col">Author_id</th>
-        <th scope="col">Created_at</th>
-        <th scope="col">Updated_at</th>
     </tr>
     </thead>
     @foreach($books as $book)
@@ -32,8 +39,6 @@
         <td>{{$book->__get("pub_year")}}</td>
         <td>{{$book->__get("avaiable")}}</td>
         <td>{{$book->__get("author_id")}}</td>
-        <td>{{$book->__get("created_at")}}</td>
-        <td>{{$book->__get("updated_at")}}</td>
     </tr>
     </tbody>
     @endforeach

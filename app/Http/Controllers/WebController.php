@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Category;
 use Illuminate\Http\Request;
 
 class WebController extends Controller
@@ -13,11 +14,11 @@ class WebController extends Controller
             "books" => $books
         ]);
     }
-    public function searchBox(Request $request){
-        $inputSearch = $request->get("title");
-        $searchBooks = Book::findOrFail($inputSearch);
-        return view("search",[
-            "searchBooks" => $searchBooks,
+    public function searchBox(Request $request)
+    {
+        $book1 = Book::where("title", $request->bookname)->get();
+        return view("search", [
+            "book1"=>$book1,
         ]);
     }
 }

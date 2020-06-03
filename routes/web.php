@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',"WebController@index");
-Route::get('/search',"WebController@searchBox");
+Route::post('/search',"WebController@searchBox");
