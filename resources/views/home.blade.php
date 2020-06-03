@@ -13,12 +13,14 @@
 <form  role="form" action="{{url("/search")}}" method="POST">
     @method("POST")
     @csrf
-    <div class="form-group" style="width: 30%">
-        <label for="book">Email address</label>
+    <div class="form-group" style="width: 30%;margin: 0 auto;display: flex;align-content: center">
         <input type="text" name="bookname" class="form-control" id="book" placeholder="Search....">
         <button class="btn btn-dark">Search</button>
     </div>
 </form>
+<div class="mb-0 col-lg-3 float-right d-flex justify-content-end">
+    <a href="{{url("/new-book")}}" class="btn btn-primary">Create</a>
+</div>
 <table class="table">
     <thead>
     <tr>
@@ -28,6 +30,8 @@
         <th scope="col">PUB_Year</th>
         <th scope="col">Avalible</th>
         <th scope="col">Author_id</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
     </tr>
     </thead>
     @foreach($books as $book)
@@ -39,6 +43,14 @@
         <td>{{$book->__get("pub_year")}}</td>
         <td>{{$book->__get("avaiable")}}</td>
         <td>{{$book->__get("author_id")}}</td>
+        <td> <a href="{{url("/edit-book/{$book->__get("id")}")}}" class="btn btn-outline-dark">Edit</a></td>
+        <td>
+            <form action="{{url("/delete-book/{$book->__get("id")}")}}" method="post">
+                @method("DELETE")
+                @csrf
+                <button type="submit" onclick="return confirm('Are you sure?');" class="btn btn-outline-dark">Delete</button>
+            </form>
+        </td>
     </tr>
     </tbody>
     @endforeach
